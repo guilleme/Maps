@@ -61,21 +61,24 @@
 var map = L.map('map').setView([22,-100], 5);
 var layers = document.getElementById('menu-ui');
 
-addLayer(L.mapbox.tileLayer('https://a.tiles.mapbox.com/v4/guilleme.ioc8642f.json?access_token=pk.eyJ1IjoiZ3VpbGxlbWUiLCJhIjoiN09VM21iQSJ9.9zeXdkDbZPiJ_Uxyn8xHDg'), 'Uno', 1);
-addLayer(L.mapbox.tileLayer('https://a.tiles.mapbox.com/v4/guilleme.ioc9810a.json?access_token=pk.eyJ1IjoiZ3VpbGxlbWUiLCJhIjoiN09VM21iQSJ9.9zeXdkDbZPiJ_Uxyn8xHDg'), 'Dos', 2);
+addLayer(L.mapbox.tileLayer('https://a.tiles.mapbox.com/v4/guilleme.ioc8642f.json?access_token=pk.eyJ1IjoiZ3VpbGxlbWUiLCJhIjoiN09VM21iQSJ9.9zeXdkDbZPiJ_Uxyn8xHDg'), 'Base', 1);
+
+  addLayer(L.mapbox.featureLayer('https://a.tiles.mapbox.com/v4/guilleme.ioc8642f/features.json?access_token=pk.eyJ1IjoiZ3VpbGxlbWUiLCJhIjoiN09VM21iQSJ9.9zeXdkDbZPiJ_Uxyn8xHDg'), 'Uno', 2);
+
+  addLayer(L.mapbox.featureLayer('https://a.tiles.mapbox.com/v4/guilleme.ioc9810a/features.json?access_token=pk.eyJ1IjoiZ3VpbGxlbWUiLCJhIjoiN09VM21iQSJ9.9zeXdkDbZPiJ_Uxyn8xHDg'), 'Dos', 4);
 
 function addLayer(layer, name, zIndex) {
     layer
         .setZIndex(zIndex)
         .addTo(map);
-
+    
     // Create a simple layer switcher that
     // toggles layers on and off.
     var link = document.createElement('a');
         link.href = '#';
         link.className = 'active';
-        link.innerHTML = name;
-
+        link.innerHTML = name;    
+        
     link.onclick = function(e) {
         e.preventDefault();
         e.stopPropagation();
